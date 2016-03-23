@@ -27,8 +27,6 @@ class FollowParser(HTMLParser):
                 self.value = int(data[data.index('(')+1:data.index(')')]) #Attempt to grab and save the number from inside the brackets
             except ValueError: #If we fail, do nothing and move on
                 pass
-            else:
-                self.reset()
 
 def get_user_info(user,to=1):
     u = json.loads(urlopen("https://api-staging.scratch.mit.edu/users/"+user,timeout=to).read().decode("utf-8"))
