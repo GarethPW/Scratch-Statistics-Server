@@ -1,5 +1,5 @@
 '''
-    Scratch Statistics Server v1.0.0
+    Scratch Statistics Server v1.0.1
     Based on Scratch Comments Server v1.2.2
 
     Created by Scratch user, Gaza101.
@@ -36,7 +36,7 @@ def custom_fallback(prompt="Password: ",stream=None):
 
 getpass.fallback_getpass = custom_fallback
 
-ver = "1.0.0"
+ver = "1.0.1"
 
 os.system("cls" if os.name == "nt" else "clear")
 

@@ -1,6 +1,6 @@
 '''
-    Scratch Statistics Fetcher v1.0.0
-    Created for use with Scratch Statistics Server v1.0.0
+    Scratch Statistics Fetcher v1.0.1
+    Created for use with Scratch Statistics Server v1.0.1
 
     Created by Scratch user, Gaza101.
     Licensed under GNU General Public License v3.
@@ -29,7 +29,7 @@ class FollowParser(HTMLParser):
                 pass
 
 def get_user_info(user,to=1):
-    u = json.loads(urlopen("https://api-staging.scratch.mit.edu/users/"+user,timeout=to).read().decode("utf-8"))
+    u = json.loads(urlopen("https://api.scratch.mit.edu/users/"+user,timeout=to).read().decode("utf-8"))
     info = {}
     info['id'],info['joined'],info['country'] = u['id'],u['history']['joined'],u['profile']['country']
     return info
@@ -45,14 +45,14 @@ def get_user_followers_count(user,to=1):
     return p.value
         
 def get_user_project_stats(user,project,to=1):
-    return json.loads(urlopen("https://api-staging.scratch.mit.edu/users/"+user+"/projects/"+str(project),timeout=to).read().decode("utf-8"))['stats']
+    return json.loads(urlopen("https://api.scratch.mit.edu/users/"+user+"/projects/"+str(project),timeout=to).read().decode("utf-8"))['stats']
 
 def get_user_projects_stats(user,to=1):
     ps = [0]
     info = {"comments": 0,"favorites": 0,"loves": 0,"views": 0}
     o = 0
     while ps != []:
-        ps = json.loads(urlopen("https://api-staging.scratch.mit.edu/users/"+user+"/projects?offset="+str(o),timeout=to).read().decode("utf-8"))
+        ps = json.loads(urlopen("https://api.scratch.mit.edu/users/"+user+"/projects?offset="+str(o),timeout=to).read().decode("utf-8"))
         for p in ps:
             for k,v in p['stats'].iteritems():
                 info[k] += v
